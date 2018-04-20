@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Validation</title>
+    <style>
+        body{
+            font: 24px arial
+        }
+        .wrapper{
+            margin-top: 200px;
+            display: grid;
+            place-items: center;
+        }
+        form{
+            transform: scale(1.6)
+        }
+        input, textarea{
+            padding: 10px;
+            margin: 10px;
+            border: 0;
+            background: #eee;
+            display: block;
+         }
+         button{
+             margin-top: 10px;
+             font-size: 16px;
+             border-radius: 6px;
+             background-color: #979695;
+         }
+</style>
+    
+</head>
+<body>
+    <form class="form">
+        <div class="wrapper">
+        <label for="input-name">Name</label>
+        <input type="text" name="name" class="form-input" id="input-name" oninput="checkInput()">
+
+        <label for="input-mail">Mail</label>
+        <input type="text" name="email" class="form-input" id="input-mail" oninput="checkInput()">
+
+        <label for="input-message">Message</label>
+        <textarea name="message" col="30" rows="10" class="form-input" id="input-message" oninput="checkInput()"></textarea>
+
+        <button type="submit" class="submit-button" disabled>Submit</button>
+        </div>
+    </form>
+
+
+<script>
+    
+    let inputName = document.getElementById('input-name')
+    let inputMail = document.getElementById('input-mail')
+    let inputMessage = document.getElementById('input-message')
+    let button = document.querySelector('.submit-button')
+    let regEx = /\S+@\S+\.\S+/
+    let form = document.querySelector('.form')
+    
+    function checkInput() {
+        if(
+            inputName.value.trim() !=="" &&
+            regEx.test(inputMail.value) &&
+            inputMessage.value.trim() !=="") {
+            button.style.backgroundColor = '#fa923f'
+            button.disabled = false
+        } else {
+            button.style.backgroundColor = '#979695'
+            button.disabled = true
+        }
+    }
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('Submitted')
+    })
+</script>
+
+
+
+
+</body>
+</html>
